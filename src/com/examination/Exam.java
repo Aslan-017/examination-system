@@ -1,112 +1,41 @@
 package com.examination;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Exam {
-    private int examId;
-    private String examName;
-    private int duration; // in minutes
-    private int passingScore;
-    private List<Question> questions;
+    private int id;
+    private String name;
+    private int duration;
 
-    // Default constructor
-    public Exam() {
-        this.examId = 0;
-        this.examName = "";
-        this.duration = 60;
-        this.passingScore = 50;
-        this.questions = new ArrayList<>();
-    }
-
-    // Constructor with parameters
-    public Exam(int examId, String examName, int duration, int passingScore) {
-        this.examId = examId;
-        this.examName = examName;
+    public Exam(int id, String name, int duration) {
+        this.id = id;
+        this.name = name;
         this.duration = duration;
-        this.passingScore = passingScore;
-        this.questions = new ArrayList<>();
     }
 
-    // Getters
-    public int getExamId() {
-        return examId;
+    public int getId() {
+        return id;
     }
 
-    public String getExamName() {
-        return examName;
+    public String getName() {
+        return name;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public int getPassingScore() {
-        return passingScore;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    // Setters
-    public void setExamId(int examId) {
-        this.examId = examId;
-    }
-
-    public void setExamName(String examName) {
-        this.examName = examName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    public void setPassingScore(int passingScore) {
-        this.passingScore = passingScore;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    // Method to add question to exam
-    public void addQuestion(Question question) {
-        this.questions.add(question);
-    }
-
-    // Method to calculate total possible score
-    public int getTotalPoints() {
-        int total = 0;
-        for (Question q : questions) {
-            total += q.getPoints();
-        }
-        return total;
-    }
-
-    // Method to display exam info
-    public void displayExamInfo() {
-        System.out.println("Exam: " + examName);
-        System.out.println("ID: " + examId);
-        System.out.println("Duration: " + duration + " minutes");
-        System.out.println("Passing Score: " + passingScore);
-        System.out.println("Total Questions: " + questions.size());
-        System.out.println("Total Points: " + getTotalPoints());
-    }
-
-    // Method to compare exams by difficulty (passing score)
-    public int compareDifficulty(Exam other) {
-        return Integer.compare(this.passingScore, other.passingScore);
-    }
-
-    @Override
-    public String toString() {
-        return "Exam{" +
-                "examId=" + examId +
-                ", examName='" + examName + '\'' +
-                ", duration=" + duration +
-                ", passingScore=" + passingScore +
-                ", questionsCount=" + questions.size() +
-                '}';
+    public void display() {
+        System.out.println("Exam: " + name + ", ID: " + id + ", Duration: " + duration + " minutes");
     }
 }
