@@ -1,41 +1,48 @@
 package com.examination;
 
-public class Candidate {
-    private int id;
-    private String name;
+public class Candidate extends BaseItem implements Comparable<Candidate> {
     private int score;
 
     public Candidate(int id, String name, int score) {
-        this.id = id;
-        this.name = name;
-        this.score = score;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+        super(id, name);
+        setScore(score);
     }
 
     public int getScore() {
         return score;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setScore(int score) {
+        if (score < 0) throw new IllegalArgumentException("score must be non-negative");
         this.score = score;
     }
 
-    public void display() {
-        System.out.println("Candidate: " + name + ", ID: " + id + ", Score: " + score);
+    @Override
+    public String info() {
+        return "Candidate: " + getName() + ", ID: " + getId() + ", Score: " + score;
+    }
+
+    @Override
+    public String toString() {
+        return "Candidate{" + "id=" + getId() + ", name='" + getName() + "', score=" + score + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Candidate candidate = (Candidate) o;
+        return getId() == candidate.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(getId());
+    }
+
+    @Override
+    public int compareTo(Candidate other) {
+        int cmp = Integer.compare(other.score, this.score);
+        return (cmp != 0) ? cmp : Integer.compare(this.getId(), other.getId());
     }
 }
