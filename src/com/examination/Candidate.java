@@ -1,6 +1,9 @@
 package com.examination;
 
-public class Candidate extends BaseItem implements Comparable<Candidate> {
+public class
+
+
+Candidate extends BaseItem implements Comparable<Candidate> {
     private int score;
 
     public Candidate(int id, String name, int score) {
